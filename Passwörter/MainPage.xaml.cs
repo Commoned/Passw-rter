@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Passwörter.Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,9 +24,41 @@ namespace Passwörter
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ObservableCollection<ListItem> ListItems;
         public MainPage()
         {
             this.InitializeComponent();
+            ListItems = new ObservableCollection<ListItem>();
+        }
+
+        private void Einstellungen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Search_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+
+        }
+
+        private void Search_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+
+        }
+
+        private void List_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void neu_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(New), null);
+        }
+
+        private void delmode_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

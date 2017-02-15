@@ -5,9 +5,75 @@
     xmlns:local="using:Passwörter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:Passwörter.Model"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <RelativePanel>
+            <Button Name="Einstellungen"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    Click="Einstellungen_Click"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="20"
+                    Height="45"
+                    Width="45"
+                    Content="&#xE115;"/>
+            <Button Name="neu"
+                    RelativePanel.RightOf="Einstellungen"
+                    Click="neu_Click"
+                    FontFamily="Comic sans ms"
+                    FontSize="20"
+                    Height="45"
+                    Width="80"
+                    Content="Neu"
+                    Margin="5,0,0,0"/>
+            <AutoSuggestBox Name="Search"
+                            PlaceholderText="Search"
+                            QueryIcon="Find"
+                            Width="200"
+                            Margin="0,5,10,0"
+                            TextChanged="Search_TextChanged"
+                            QuerySubmitted="Search_QuerySubmitted"
+                            RelativePanel.AlignRightWithPanel="True">
+            </AutoSuggestBox>
+        </RelativePanel>
+        <TextBlock Name="Pass"
+                   FontFamily="Comic Sans MS"
+                   Text="Passwörter"
+                   Margin="0,45,0,0"
+                   FontSize="30"
+                   HorizontalAlignment="Left"/>
+        <CheckBox Name="delmode"
+                  IsChecked="False"
+                  Checked="delmode_Checked"
+                  FontFamily="comic Sans MS"
+                  Content="delete Mode" Margin="222,53,0,305"/>
+
+        <ListView Name="List"
+                  IsItemClickEnabled="True"
+                  ItemsSource="{x:Bind ListItems}"
+                  ItemClick="List_ItemClick"
+                  HorizontalAlignment="Center"
+                  Margin="0,75,0,0"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:ListItem">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="{x:Bind Anbieter}"
+                                   Height="85"
+                                   Width="300"
+                                   Margin="0,20,0,0"
+                                   />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
 
     </Grid>
 </Page>
