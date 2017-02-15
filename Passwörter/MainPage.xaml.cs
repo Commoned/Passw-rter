@@ -29,6 +29,7 @@ namespace Passwörter
         {
             this.InitializeComponent();
             ListItems = new ObservableCollection<ListItem>();
+            ListItem.GetAllItems(ListItems);
         }
 
         private void Einstellungen_Click(object sender, RoutedEventArgs e)

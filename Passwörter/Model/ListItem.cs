@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Passwörter;
-
+using System.Collections.ObjectModel;
+using System.IO;
 
 namespace Passwörter.Model
 {
@@ -21,12 +22,24 @@ namespace Passwörter.Model
             
             
     }
+        public static void GetAllItems(ObservableCollection<ListItem> items)
+        {
+            var allitems = getListitems();
+            items.Clear();
+            allitems.ForEach(p => items.Add(p));
+        }
 
-        public static List<ListItem> getListitems(string pAnbieter,string passw)
+        private static List<ListItem> getListitems()
         {
             var items = new List<ListItem>();
-            items.Add(new ListItem(pAnbieter, passw));
 
+            string[]  dank = Directory.GetFiles("Model/Afigh").Select(file =>
+            Path.GetFileNameWithoutExtension(file)).ToArray();
+            foreach(string fileName in dank)
+            {
+                string aids = System.IO.File.ReadAllLines("Model/Afigh/" + fileName + ".txt").ToString();
+                items.Add(new ListItem(fileName,aids));
+            }
 
 
             return items;

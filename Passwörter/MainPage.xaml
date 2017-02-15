@@ -58,7 +58,7 @@
                   IsItemClickEnabled="True"
                   ItemsSource="{x:Bind ListItems}"
                   ItemClick="List_ItemClick"
-                  HorizontalAlignment="Center"
+                  HorizontalAlignment="Left"
                   Margin="0,75,0,0"
                   >
             <ListView.ItemTemplate>

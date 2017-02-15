@@ -46,7 +46,7 @@ namespace Passwörter
             x = pLaenge.Value;
             pass = passgen.CreatePassword(x);
             passw.Text = pass;
-            ListItem.getListitems(pAnbieter,pass);
+           // ListItem.getListitems(pAnbieter,pass);
             Addpass.addpass(pAnbieter, pass);
         }
 

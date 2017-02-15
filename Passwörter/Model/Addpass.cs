@@ -6,27 +6,27 @@ using System.Threading.Tasks;
 using Passwörter;
 using System.IO;
 using System.Reflection;
+using System.Collections;
 
 namespace Passwörter.Model
 {
     class Addpass
     {
-        public static void addpass(string pAnbieter, string passw)
+        public static async void addpass(string pAnbieter, string passw)
         {
-           
-            try
+            byte[] bytesToWrite = Encoding.Unicode.GetBytes(passw);
+            using (FileStream createdFile = File.Create("Model/Afigh/" + pAnbieter + ".txt", 4096, FileOptions.Asynchronous))
             {
-                using (FileStream fs = File.Create("Model/Afigh/" + pAnbieter + ".txt"))
-                {
-                    Byte[] info = new UTF8Encoding(true).GetBytes(passw);
-                    fs.Write(info, 0, info.Length);
-                }
+                await createdFile.WriteAsync(bytesToWrite, 0, bytesToWrite.Length);
             }
-            catch (Exception ex)
-            {
-                return;
-            }
-       
+
+
+            /*File.Create("Model/Afigh/" + pAnbieter + ".txt", 1, FileOptions.Asynchronous);
+                
+            File.SetAttributes("Model/Afigh/" + pAnbieter + ".txt",FileAttributes.Normal);
+            IEnumerable<string> m_oEnum = new string[] {passw};
+            File.WriteAllLines("Model/Afigh/" + pAnbieter + ".txt",m_oEnum);*/
+
         }
     }
 }
